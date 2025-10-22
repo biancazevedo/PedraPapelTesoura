@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Pedra Papel Tesoura Simples</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <h1>Pedra Papel Tesoura</h1>
+  <div class="placar" id="placar">Você: 0 | Computador: 0</div>
+  <div>
+    <button onclick="jogar('pedra')">Pedra</button>
+    <button onclick="jogar('papel')">Papel</button>
+    <button onclick="jogar('tesoura')">Tesoura</button>
+  </div>
+  <div class="msg" id="mensagem"></div>
+
+  <script>
+    let usuario = 0, computador = 0;
+    function jogar(escolha) {
+      const opcoes = ['pedra', 'papel', 'tesoura'];
+      const pc = opcoes[Math.floor(Math.random()*3)];
+      let resultado = "";
+      if (escolha === pc) {
+        resultado = "Empate!";
+      } else if (
+        (escolha === "pedra" && pc === "tesoura") ||
+        (escolha === "papel" && pc === "pedra") ||
+        (escolha === "tesoura" && pc === "papel")
+      ) {
+        resultado = "Você venceu!";
+        usuario++;
+      } else {
+        resultado = "Computador venceu!";
+        computador++;
+      }
+      document.getElementById("placar").textContent = `Você: ${usuario} | Computador: ${computador}`;
+      document.getElementById("mensagem").textContent = `Você escolheu ${escolha}, computador escolheu ${pc}. ${resultado}`;
+    }
+  </script>
+</body>
+</html>
+ 
